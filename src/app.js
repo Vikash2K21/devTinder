@@ -1,13 +1,15 @@
 const express = require("express");
 const app = express();
 
-app.use("/user",(req,res) =>{
-    res.send("HHHHHHHHHH");
-})
+// app.use("/user",(req,res) =>{
+//     res.send("hello user");
+// })
 
 //get method
 
-app.get("/user", (req,res) =>{
+app.get("/user/:userId/:name/:password", (req,res) =>{
+    console.log(req.params);
+    //console.log(req.query);
     res.send({firstname : "vikash", lastname: "kumar"});
 });
 

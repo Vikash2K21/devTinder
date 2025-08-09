@@ -17,3 +17,7 @@ difference between caret and tildes (^ vs ~)
 -order of the routes matter a lot 
 -Install postman App and make a workspace/ collection and Test api call
 -write logic to handle GET, POST , DELETE, PATCH  API call and test them on postman 
+-Explore routing and use of ?,*,(), * in the routes
+-Use of regex in routes /a/ , /.*fly$/
+-Reading the query params in the routes 
+-reading the dynamic routes
