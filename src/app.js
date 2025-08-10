@@ -1,36 +1,26 @@
 const express = require("express");
+
 const app = express();
 
-// app.use("/user",(req,res) =>{
-//     res.send("hello user");
-// })
+const {adminAuth,userAuth} = require("./middlewares/auth");
 
-//get method
+app.use("/admin",adminAuth);
+//app.use("/user",userAuth);
 
-app.get("/user/:userId/:name/:password", (req,res) =>{
-    console.log(req.params);
-    //console.log(req.query);
-    res.send({firstname : "vikash", lastname: "kumar"});
-});
-
-//post method 
-
-app.post("/user",(req,res) =>{
-    res.send("Save data successfully in database");
+app.post("/user/login",(req,res)=>{
+    res.send("user logged in successfully");
 })
 
-//delete method
-
-app.delete("/user",(req,res) =>{
-    res.send("deleted successfully");
+app.get("/user", userAuth,(req,res)=>{
+    res.send("user data sent");
+});
+app.get("/admin/getAllData",(req,res)=>{
+    res.send(" Get ALL data successfully");
+})
+app.get("/admin/deleteUser",(req,res)=>{
+    res.send("deleted data successfully");
 })
 
-//This will match all the http methods api calls to /test
-app.use((req,res) => {
-    res.send("Namaste nodejs!");
-});
-
-
-app.listen(3000, () => {
+app.listen(3000 , () => {
     console.log("server is running on port 3000");
 });
