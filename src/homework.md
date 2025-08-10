@@ -30,3 +30,4 @@ difference between caret and tildes (^ vs ~)
 -Difference  app.use and app.all
 -write a dummy auth middleware for adminn 
 -write a dummy middleware for all user routes , except /user/login
+-error handling using app.use("/",(err, req, res, next) = {})
