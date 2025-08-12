@@ -31,3 +31,12 @@
 -write a dummy auth middleware for adminn 
 -write a dummy middleware for all user routes , except /user/login
 -error handling using app.use("/",(err, req, res, next) = {})
+
+-create a free cluster on mongodb official website and that is known is ongodb atlas 
+-Install mangoose library
+-connect your application to the database <"Connection -url">/ devTinder
+-call the connectdb function and connect to database befire starting application on 3000
+-Create a user Schema and user model
+-create POST/signup API to add data to database
+-push some documents using API calls from postman
+-Error Handling using try , catch
