@@ -44,3 +44,4 @@
 -js vs json(difference)
 -Add the  express.json middleware to your app
 -MAke your signup API dynamic to recieve data from the user end
+-all complete otherwise  you forget easily.
