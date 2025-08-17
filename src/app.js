@@ -2,7 +2,7 @@ const express = require("express");
 const connectDB = require("./config/database");
 const app = express();
 const User = require("./models/user");
-
+//write once use anywhere 
 app.use(express.json());
 
 app.post("/signup", async (req,res) =>{
@@ -51,6 +51,34 @@ app.get("/feed", async(req,res)=>{
         res.status(400).send("Error fetching users:");
     }
 })
+
+//Delete user from the database
+app.delete("/delete", async(req,res)=>{
+    const UserId = req.body.userId;
+    try{
+        const user = await User.findByIdAndDelete({_id:UserId});
+        //const user = await User.findByIdAndDelete(UserId);
+        res.send("User deleted Successfully");
+    }catch(err){
+        res.status(400).send("Something went worng");
+    }
+})
+
+//Update data of the user
+app.patch("/user", async(req,res)=>{
+    const userId = req.body.userId;
+    const data = req.body;
+    try{
+       const user = await User.findByIdAndUpdate({_id:userId},data, {
+            returnDocument:"after",
+            runValidators: true, // Ensure that the update respects the schema validation rules
+        });
+        console.log(user);
+        res.send("User updated successfully");
+    }catch(err){
+        res.send(400).send("Update Failed:" + err.message);
+    }
+});
 connectDB()
  .then(() => {
     console.log("Database connection established successfully...");
