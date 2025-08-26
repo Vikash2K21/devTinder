@@ -66,3 +66,5 @@
  -Never trust req.body
  -Add API level validation on patch request and signup post api
  - DATA SAnitizing  Add ApI validation for each field 
+ -Install validator
+ -Explore validator library function and use validator func for password , email, 
