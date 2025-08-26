@@ -64,3 +64,5 @@
  -Add timestamps to the userschema
 
  -Never trust req.body
+ -Add API level validation on patch request and signup post api
+ - DATA SAnitizing  Add ApI validation for each field 
