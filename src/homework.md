@@ -62,3 +62,5 @@
  -Create a customvalidate function for gender
  -Improve the DB Schema - put all appropriate validation on each fiels in schema 
  -Add timestamps to the userschema
+
+ -Never trust req.body
