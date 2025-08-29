@@ -68,3 +68,7 @@
  - DATA SAnitizing  Add ApI validation for each field 
  -Install validator
  -Explore validator library function and use validator func for password , email, 
+
+ -Validate data is signup api
+ -Install bcrypt package
+ -create passwordHash using bcrypt.hash and save the user is encrypted password
