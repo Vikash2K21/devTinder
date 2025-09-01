@@ -171,3 +171,7 @@ app.patch("/user/:userId", async(req,res)=>{
 -Explore tinder APIs
 -create a list all API you can think of in devtinder
 -Group multiple routes under respective routers
+-Read documentation for express.Router
+create routes folder for managing auth,profile, request routers
+create authRouter, profileRouter,request routers
+Import these routers in app.js
