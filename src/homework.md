@@ -73,4 +73,101 @@
  -Install bcrypt package
  -create passwordHash using bcrypt.hash and save the user is encrypted password
  -create login api
- compare password and throw errors if email or password is invalid
+-compare password and throw errors if email or password is invalid
+
+-Install cookie-parser
+-send a dumy cookie to user
+-Create a GET /Profile API and check if you get the cookie back
+-Install jsonwebtoken
+-In login API, after email and password validation , create a jwt token and send it to user
+-Read the cookies inside your profile API and find the logged in user
+
+-----------------------------------------------------------------------
+//Get user by email
+app.get("/user", async (req,res)=>{
+    const userEmail = req.body.emailId;
+
+    try{
+        console.log(userEmail);
+        const user = await User.findOne({emailId: userEmail});
+        if(!user){
+            res.status(404).send("User Not Found");
+        }else{
+            res.send(user); 
+        }
+        res.send(user);
+        // const users = await User.find({emailId:userEmail});
+        // if(users.length === 0) {
+        //     res.status(404).send("User not found");
+        // }else{
+        //     res.send(users);
+        // }
+        
+    }catch (err) {
+        res.status(400).send("Error fetching the user: ");
+    }
+})
+
+//Feed API -GET /feed - get all the users from the database
+app.get("/feed", async(req,res)=>{
+    try{
+        const users = await User.find({});
+        res.send(users);
+    }catch(err){
+        res.status(400).send("Error fetching users:");
+    }
+})
+
+//Delete user from the database
+app.delete("/delete", async(req,res)=>{
+    const UserId = req.body.userId;
+    try{
+        const user = await User.findByIdAndDelete({_id:UserId});
+        //const user = await User.findByIdAndDelete(UserId);
+        res.send("User deleted Successfully");
+    }catch(err){
+        res.status(400).send("Something went worng");
+    }
+})
+
+//Update data of the user
+app.patch("/user/:userId", async(req,res)=>{
+    const userId = req.params?.userId;
+    const data = req.body;
+
+    
+    try{
+
+        const ALLOWED_UPDATES = ["userId","photoUrl", "about", "gender", "age","skills"];
+
+        const isUpdateAllowed = Object.keys(data).every((k) =>
+            ALLOWED_UPDATES.includes(k)
+        );
+
+        if(!isUpdateAllowed){
+            throw new Error("Update is not allowed");
+        }
+        if(data?. skills.length > 10){
+            throw new Error("Skills cannot be more than 10");
+        } 
+        const user = await User.findByIdAndUpdate({_id:userId},data, {
+            returnDocument:"after",
+            runValidators: true, // Ensure that the update respects the schema validation rules
+        });
+        console.log(user);
+        res.send("User updated successfully");
+    }catch(err){
+        res.send(400).send("Update Failed:" + err.message); 
+    }
+});
+
+
+-userAuth Middleware
+-Add the user Auth Middleware in profile API and a new sendConnectionRequest API
+-set the expiry of JWT token and cookies to 7 days 
+-Create user schema method to getJWT()
+-create UserSchema method to comparePassword(passwordInputByUser)
+
+-Explore tinder APIs
+-create a list all API you can think of in devtinder
+-Group multiple routes under respective routers
